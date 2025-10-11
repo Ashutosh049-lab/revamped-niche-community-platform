@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+/* Base layout helpers */
+html, body, #root { height: 100%; }
+body { @apply antialiased bg-white text-gray-900; }
+
+/* App container convenience */
+.app-container { @apply min-h-screen flex flex-col; }

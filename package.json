@@ -1,0 +1,13 @@
+{
+  "name": "revamped-niche-community-platform",
+  "version": "1.0.0",
+  "description": "A real-time, Firebase-driven community platform where users join niche interest groups (tech, fitness, books, etc.), post content, engage in threaded discussions, and receive personalized recommendations. Socket.io powers instant collaboration and live updates; Firebase provides authentication, Firestore, Cloud Functions, Storage, FCM, and Hosting.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
