@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Database Seeder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        button {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:hover {
+            background: #3367d6;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        #output {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            min-height: 100px;
+            border: 1px solid #ddd;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #4285f4;
+            background: #f8f9ff;
+        }
+        .warning {
+            border-left-color: #ff9800;
+            background: #fff8e1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌱 Firebase Database Seeder</h1>
+        
+        <div class="section">
+            <h3>📋 What this does:</h3>
+            <ul>
+                <li>Creates 4 sample communities (Tech, Fitness, Books, Startups)</li>
+                <li>Adds 3 sample posts with content</li>
+                <li>All data is created in your Firebase project: <strong>storedata-cdac6</strong></li>
+            </ul>
+        </div>
+
+        <div class="section warning">
+            <h3>⚠️ Important Notes:</h3>
+            <ul>
+                <li><strong>Make sure you're signed into your app first!</strong></li>
+                <li>This will add data to your production database</li>
+                <li>You can run this multiple times safely</li>
+                <li>Check the browser console for detailed logs</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <button id="seedBtn" onclick="runSeeding()">
+                🚀 Seed Database
+            </button>
+            <button onclick="clearOutput()">
+                🧹 Clear Output
+            </button>
+        </div>
+
+        <div id="output">Click "Seed Database" to populate your Firebase project with sample data...</div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js';
+        import { getFirestore, collection, doc, setDoc, addDoc } from 'https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDiFLGdPiP9n1UrN7y2k8Q-JfQHAk8HQD0",
+            authDomain: "storedata-cdac6.firebaseapp.com",
+            projectId: "storedata-cdac6",
+            storageBucket: "storedata-cdac6.firebasestorage.app",
+            messagingSenderId: "115311579403",
+            appId: "1:115311579403:web:78dae1c1f5d1167b90520e"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const sampleCommunities = [
+            {
+                id: "tech-enthusiasts",
+                name: "Tech Enthusiasts",
+                description: "Discuss the latest in technology, programming, and innovation. Share your projects and learn from others.",
+                category: "Technology",
+                tags: ["programming", "ai", "web-development", "mobile"],
+                public: true,
+                isActive: true,
+                memberCount: 145,
+                postCount: 23,
+                activityScore: 0.8,
+                createdBy: "seed-user-1",
+                admins: ["seed-user-1"],
+                moderators: [],
+                rules: [
+                    "Be respectful to all members",
+                    "No spam or self-promotion",
+                    "Keep discussions tech-related",
+                    "Help others learn and grow"
+                ]
+            },
+            {
+                id: "fitness-community",
+                name: "Fitness & Health Hub",
+                description: "Share workout routines, nutrition tips, and motivate each other on our fitness journeys.",
+                category: "Health & Fitness",
+                tags: ["workout", "nutrition", "wellness", "motivation"],
+                public: true,
+                isActive: true,
+                memberCount: 89,
+                postCount: 18,
+                activityScore: 0.7,
+                createdBy: "seed-user-2",
+                admins: ["seed-user-2"],
+                moderators: [],
+                rules: [
+                    "Support and encourage each other",
+                    "No medical advice - consult professionals",
+                    "Share your progress and tips",
+                    "Respect different fitness levels"
+                ]
+            },
+            {
+                id: "book-lovers",
+                name: "Book Lovers Corner",
+                description: "Discover new books, discuss your favorites, and connect with fellow readers.",
+                category: "Literature",
+                tags: ["reading", "fiction", "non-fiction", "reviews"],
+                public: true,
+                isActive: true,
+                memberCount: 67,
+                postCount: 15,
+                activityScore: 0.6,
+                createdBy: "seed-user-3",
+                admins: ["seed-user-3"],
+                moderators: [],
+                rules: [
+                    "No spoilers without warnings",
+                    "Respect different reading preferences",
+                    "Share thoughtful reviews",
+                    "Recommend books with descriptions"
+                ]
+            },
+            {
+                id: "startup-founders",
+                name: "Startup Founders Network",
+                description: "Connect with fellow entrepreneurs, share challenges, and grow your business together.",
+                category: "Business",
+                tags: ["entrepreneurship", "startups", "business", "networking"],
+                public: false,
+                isActive: true,
+                memberCount: 34,
+                postCount: 12,
+                activityScore: 0.9,
+                createdBy: "seed-user-1",
+                admins: ["seed-user-1"],
+                moderators: ["seed-user-2"],
+                rules: [
+                    "Verified entrepreneurs only",
+                    "Share genuine experiences",
+                    "Help others succeed",
+                    "No direct sales pitches"
+                ]
+            }
+        ];
+
+        const samplePosts = [
+            {
+                communityId: "tech-enthusiasts",
+                authorId: "seed-user-1",
+                title: "The Future of AI in Web Development",
+                content: "I've been experimenting with AI-powered coding assistants and the results are fascinating. What are your thoughts on AI tools for developers? Are they helping or hindering the learning process?",
+                tags: ["ai", "web-development", "future-tech"],
+                type: "discussion",
+                upvotes: 12,
+                downvotes: 1,
+                commentCount: 8,
+                engagementScore: 0.85,
+                isPinned: false,
+                isLocked: false
+            },
+            {
+                communityId: "fitness-community",
+                authorId: "seed-user-2",
+                title: "30-Day Morning Routine Challenge",
+                content: "Who wants to join me for a 30-day morning routine challenge? We'll focus on consistency rather than intensity. Even 10 minutes counts! Share your goals below.",
+                tags: ["challenge", "morning-routine", "consistency"],
+                type: "challenge",
+                upvotes: 18,
+                downvotes: 0,
+                commentCount: 15,
+                engagementScore: 0.92,
+                isPinned: true,
+                isLocked: false
+            },
+            {
+                communityId: "book-lovers",
+                authorId: "seed-user-3",
+                title: "Hidden Gems: Underrated Books of 2024",
+                content: "I've compiled a list of amazing books that didn't get the attention they deserved this year. Have you read any of these? What hidden gems would you add to the list?",
+                tags: ["recommendations", "2024", "hidden-gems"],
+                type: "recommendation",
+                upvotes: 9,
+                downvotes: 0,
+                commentCount: 12,
+                engagementScore: 0.78,
+                isPinned: false,
+                isLocked: false
+            }
+        ];
+
+        window.runSeeding = async function() {
+            const output = document.getElementById('output');
+            const btn = document.getElementById('seedBtn');
+            
+            btn.disabled = true;
+            btn.textContent = '⏳ Seeding...';
+            
+            try {
+                output.textContent = '🌱 Starting to seed Firebase database...\n';
+                
+                // Seed communities
+                output.textContent += '📝 Seeding communities...\n';
+                for (const community of sampleCommunities) {
+                    const { id, ...data } = community;
+                    await setDoc(doc(db, "communities", id), {
+                        ...data,
+                        createdAt: new Date(),
+                        updatedAt: new Date()
+                    });
+                    output.textContent += `✅ Added community: ${community.name}\n`;
+                }
+                
+                // Seed posts
+                output.textContent += '\n📄 Seeding posts...\n';
+                for (const post of samplePosts) {
+                    const docRef = await addDoc(collection(db, "posts"), {
+                        ...post,
+                        createdAt: new Date(),
+                        updatedAt: new Date()
+                    });
+                    output.textContent += `✅ Added post: ${post.title}\n`;
+                }
+                
+                output.textContent += '\n🎉 Database seeding completed successfully!\n';
+                output.textContent += '\n📊 Seeded data:\n';
+                output.textContent += `   • ${sampleCommunities.length} communities\n`;
+                output.textContent += `   • ${samplePosts.length} posts\n`;
+                output.textContent += '\n🔄 Go back to your app and refresh to see the new data!\n';
+                output.textContent += '🌐 App URL: http://127.0.0.1:5173\n';
+                
+            } catch (error) {
+                output.textContent += `\n❌ Seeding failed: ${error.message}\n`;
+                console.error('Seeding error:', error);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '🚀 Seed Database';
+            }
+        };
+
+        window.clearOutput = function() {
+            document.getElementById('output').textContent = 'Output cleared. Ready for next seeding operation...';
+        };
+    </script>
+</body>
+</html>

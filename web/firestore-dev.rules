@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // TEMPORARY DEVELOPMENT RULES - VERY PERMISSIVE!
+    // Use this for testing, then replace with production rules
+    
+    match /{document=**} {
+      // Allow all authenticated users to read and write any document
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+
+// TO DEPLOY THESE RULES:
+// 1. Copy this content 
+// 2. Go to Firebase Console → Firestore Database → Rules
+// 3. Replace existing rules with this content
+// 4. Click "Publish"
+//
+// WARNING: These are very permissive rules for development only!
+// Use the proper rules in firestore.rules for production.

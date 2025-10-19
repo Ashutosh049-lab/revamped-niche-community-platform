@@ -1,0 +1,62 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users can read and write their own user document
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read: if request.auth != null; // Allow other users to read profiles
+    }
+    
+    // Communities are readable by all authenticated users
+    // Only authenticated users can create communities
+    match /communities/{communityId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.auth.uid != null;
+      allow update, delete: if request.auth != null && 
+        (request.auth.uid in resource.data.admins || request.auth.uid == resource.data.createdBy);
+    }
+    
+    // Posts are readable by all authenticated users
+    match /posts/{postId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.auth.uid != null;
+      allow update, delete: if request.auth != null && request.auth.uid == resource.data.authorId;
+    }
+    
+    // Comments are readable by all authenticated users
+    match /comments/{commentId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.auth.uid != null;
+      allow update, delete: if request.auth != null && request.auth.uid == resource.data.authorId;
+    }
+    
+    // Notifications are only accessible to the target user
+    match /notifications/{notificationId} {
+      allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;
+      allow create: if request.auth != null;
+    }
+    
+    // Polls are readable by all authenticated users
+    match /polls/{pollId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.auth.uid != null;
+      allow update: if request.auth != null && 
+        (request.auth.uid == resource.data.authorId || request.auth.uid in resource.data.voters);
+    }
+    
+    // Votes and reactions
+    match /votes/{voteId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    match /reactions/{reactionId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // For development: Allow read access to any collection for authenticated users
+    // Remove this in production and create specific rules
+    match /{document=**} {
+      allow read: if request.auth != null;
+    }
+  }
+}
