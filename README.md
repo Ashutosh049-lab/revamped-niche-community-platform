@@ -31,5 +31,5 @@ engage in threaded discussions, and receive personalized recommendations.
 ---
 
 ## Contact
-- **Email:** ashutoshjaiswal264@gmail.com
+- **Email:** jashutosh528@gmail.com
 - **Portfolio:** [ashutosh-portfolio-049.netlify.app](https://ashutosh-portfolio-049.netlify.app/)
