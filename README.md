@@ -1,48 +1,38 @@
-# Revamped Niche Community Platform – Real-Time, Personalized, and Engaging Experience
+Niche Community Platform
 
-A real-time, Firebase-driven community platform where users join niche interest groups (tech, fitness, books, etc.), post content, engage in threaded discussions, and receive personalized recommendations. Socket.io powers instant collaboration and live updates; Firebase provides authentication, Firestore, Cloud Functions, Storage, FCM, and Hosting.
+Description:
+A real-time, Firebase-driven community platform where users join niche interest groups (tech, fitness, books, etc.), post content, engage in threaded discussions, and receive personalized recommendations.
 
-## Core Features
-- Interactive discussion boards with threaded comments and media uploads
-- Real-time updates for posts, comments, reactions via Socket.io + Firestore snapshots
-- Rich text editor (Quill/TipTap), reactions, voting
-- Smart discovery: filters, personalized recommendations, interest clusters
-- Dynamic feed with animations and customization (Most Recent, Top, Trending)
-- Engagement tools: live polls, Q&A, push notifications, achievements/leaderboards
-- Onboarding, profile customization, and community admin tools
-- Optional AI content moderation via Cloud Functions + external LLM API
+Features
 
-## Tech Stack
-- Frontend: React (Vite + TypeScript), Tailwind CSS, React Router, Socket.io client, Quill/React-Quill
-- Backend: Firebase (Auth, Firestore, Functions, Storage, FCM, Hosting)
-- Realtime layer: Node.js Socket.io server (lightweight relay / augmentation)
+Interactive discussion boards with threaded comments and media uploads.
 
-## Packages / Folders
-- web/ — React app (Vite + TS)
-- server/ — Socket.io server (Express)
+Real-time updates for posts, comments, and reactions via Socket.io + Firestore.
 
-## Development
-1. Web: Vite dev server on :5173
-2. Server: Socket.io server on :4000 (configurable)
+Rich text editor (Quill/TipTap) with reactions, voting, and live polls.
 
-## Environment Variables (Vite)
-Create `web/.env` from `.env.sample` before running the web app.
+Dynamic feed with filters: Most Recent, Top, Trending.
 
-```
-VITE_FIREBASE_API_KEY=
-VITE_FIREBASE_AUTH_DOMAIN=
-VITE_FIREBASE_PROJECT_ID=
-VITE_FIREBASE_STORAGE_BUCKET=
-VITE_FIREBASE_MESSAGING_SENDER_ID=
-VITE_FIREBASE_APP_ID=
-VITE_FIREBASE_MEASUREMENT_ID=
-VITE_SOCKET_URL=http://localhost:4000
-```
+Smart discovery with personalized recommendations and interest clusters.
 
-## Scripts (after scaffolding)
-- Web: `npm run dev` (inside `web/`)
-- Server: `npm run dev` (inside `server/`)
+Engagement tools: achievements, leaderboards, and push notifications.
 
-## Notes
-- No secrets are committed; use `.env` locally and keep it private.
-- Firebase project setup, Hosting deployment, Functions, and FCM setup can be added after initial UI and Socket layer are in place.
+Admin tools for moderation and community management.
+
+Tech Stack
+
+Frontend: React (Vite + TypeScript), Tailwind CSS, React Router, Socket.io Client, Quill/React-Quill
+
+Backend: Firebase (Auth, Firestore, Functions, Storage, FCM, Hosting)
+
+Realtime Layer: Node.js + Socket.io
+
+Live Demo
+
+Niche Community Platform Live
+
+Contact
+
+Email: ashutoshjaiswal264@gmail.com
+
+Portfolio: ashutosh-portfolio-049.netlify.app
