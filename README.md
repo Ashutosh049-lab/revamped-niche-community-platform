@@ -54,7 +54,8 @@ It serves as a **portfolio-ready project** and a **fully functional community hu
 
 ---
 
-## 📁 Folder Structure  
+## 📁 Folder Structure 
+```
 
 niche-community-platform/
 ├── src/
@@ -68,6 +69,7 @@ niche-community-platform/
 ├── public/ # Static assets
 ├── package.json
 └── README.md
+```
 
 ## 🚀 Getting Started  
 
