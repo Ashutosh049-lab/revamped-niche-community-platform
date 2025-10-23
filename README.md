@@ -116,8 +116,6 @@ Built with ❤️ by Ashutosh Kumar Jaiswal
 Currently pursuing Full-Stack Web Development @ Masai School  
 #dailylearning #masaiverse  
 
-**React · TypeScript · Firebase · Socket.io · TailwindCSS · Full-Stack Development · Netlify · Web App · Community Platform · Portfolio Project**
-
 
 ## 🚀 Getting Started  
 
@@ -126,3 +124,6 @@ Currently pursuing Full-Stack Web Development @ Masai School
 - **Portfolio:** [ashutosh-portfolio-049.netlify.app](https://ashutosh-portfolio-049.netlify.app/)
 - Linkedin:  [Ashutosh Jaiswal](https://www.linkedin.com/in/ashutosh-kumar-jaiswal-128054256/)
 ---
+
+
+HTML · CSS · JavaScript · Responsive Design · UI/UX · Frontend Development · Netlify · Portfolio Project
