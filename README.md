@@ -125,4 +125,4 @@ Currently pursuing Full-Stack Web Development @ Masai School
 - **Email:** jashutosh528@gmail.com
 - **Portfolio:** [ashutosh-portfolio-049.netlify.app](https://ashutosh-portfolio-049.netlify.app/)
 - Linkedin:  [Ashutosh Jaiswal](https://www.linkedin.com/in/ashutosh-kumar-jaiswal-128054256/)
-  ---
+---
