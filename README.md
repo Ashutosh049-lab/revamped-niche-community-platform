@@ -126,4 +126,4 @@ Currently pursuing Full-Stack Web Development @ Masai School
 ---
 
 
-HTML · CSS · JavaScript · Responsive Design · UI/UX · Frontend Development · Netlify · Portfolio Project
+**React · TypeScript · Firebase · Socket.io · TailwindCSS · Full-Stack Development · Netlify · Web App · Community Platform · Portfolio Project**
