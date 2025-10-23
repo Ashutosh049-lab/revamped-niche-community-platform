@@ -75,6 +75,7 @@ niche-community-platform/
 ---
 
 ## 📈 Optimizations
+```
 Performance: Batched Firestore writes instead of multiple updateDoc calls.
 
 Code Quality: Extracted reusable utilities (e.g., getToday()).
@@ -84,13 +85,11 @@ State Management: Normalized Redux/Context state for O(1) lookups.
 UI/UX: Mobile-first layout with smooth animations.
 
 Error Handling: Used rejectWithValue in async actions for clean error states.
-
-yaml
-Copy code
-
+```
 ---
 
 ## 🌐 Deployment
+```
 Push your repo to GitHub.
 
 Connect it with Netlify.
@@ -99,9 +98,7 @@ Add Firebase config as environment variables in Netlify.
 
 Deploy and share your live app! 🚀
 
-yaml
-Copy code
-
+```
 ---
 
 ## 🤝 Contributing
@@ -128,3 +125,4 @@ Currently pursuing Full-Stack Web Development @ Masai School
 - **Email:** jashutosh528@gmail.com
 - **Portfolio:** [ashutosh-portfolio-049.netlify.app](https://ashutosh-portfolio-049.netlify.app/)
 - Linkedin:  [Ashutosh Jaiswal](https://www.linkedin.com/in/ashutosh-kumar-jaiswal-128054256/)
+  ---
